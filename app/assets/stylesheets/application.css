@@ -19,3 +19,8 @@
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
 }
+
+thead {
+  display: table-header-group;
+  text-align: middle;
+}
