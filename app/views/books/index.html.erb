@@ -1,25 +1,37 @@
-<h1>Books</h1>
+<html>
+  <body>
+    <h1>Books</h1>
 
-<% @books.each do |book| %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+      <% @books.each do |book| %>
+      <td><%== book.title %></td>
+      <td><%== book.body %></td>
 
-<table>
-  <thead>
-    <p>Title</p>
-    <span><%== book.title %></span>
+      <td><%= link_to "Show", books_path(book.id) %></td>
+      <td><%= link_to "Edit", edit_book_path(book.id) %></td>
+      <td><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
 
-    <p>Body</p>
-    <span><%== book.body %></span>
-  </thead>
 
-    <span>
-      <%= link_to book.title, book_path(book.id) %>
-    </span>
+    </table>
 
-</table>
+    <% end %>
 
-<%= link_to "Show", books_path(book.id) %>
-<%= link_to "Edit", edit_book_path(book.id) %>
-<%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+    <h2>New book</h2>
+    <%= form_with model: @Book do |f| %>
+      <p>Title</p>
+      <%= f.text_field :title %>
 
-<% end %>
+      <p>Body</p>
+      <%= f.text_area :body %>
 
+      <%= f.submit 'Create Book' %>
+
+    <% end %>
+  </body>
+</html>
